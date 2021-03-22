@@ -27,6 +27,7 @@
 
 <script>
 import Button from "../../components/Button";
+import ApiAuth from "../../mixins/ApiAuth";
 export default {
   components: {
     Button,
@@ -44,26 +45,10 @@ export default {
       country: "",
     };
   },
+  mixins: [ApiAuth],
   methods: {
-    signup: function () {
-      const URL = 'https://api-node-aaron-saksik.herokuapp.com/api/v1/users/';
-
-      fetch(URL, {
-        method: "POST",
-        body: JSON.stringify({
-          firstName: this.firstName,
-          lastName: this.lastName,
-          email: this.email,
-          password: this.password,
-          phone: this.phone,
-          address: this.address,
-          city: this.city,
-          postalCode: this.postalCode,
-          country: this.country,
-        }),
-        headers: { "Content-type": "application/json; charset=UTF-8" },
-      })
-        .then((res) => res.json())
+    signup() {
+      this.postUser()
         .then((data) => {
           localStorage.setItem("token", data.token);
           if (data.auth) {

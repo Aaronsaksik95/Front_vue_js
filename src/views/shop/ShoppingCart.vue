@@ -51,6 +51,11 @@
         <h3>Total: {{ priceTotal }} €</h3>
         <h3>Quantité total: {{ qtyTotal }} produits.</h3>
       </div>
+      <Button
+        class="btn"
+        btnText="Commander"
+        :btnFunction="orderCart"
+      />
     </div>
     <h2 v-else>Votre panier est vide.</h2>
   </div>
@@ -60,6 +65,7 @@
 import Button from "../../components/Button";
 import TitlePage from "../../components/TitlePage";
 import Cart from "../../mixins/Cart";
+import ApiOrders from "../../mixins/ApiOrders"
 
 export default {
   name: "Cart",
@@ -74,23 +80,26 @@ export default {
       d_button: false,
     };
   },
-  mixins: [Cart],
+  mixins: [Cart, ApiOrders],
   created() {
     this.cart = this.getCart();
   },
   methods: {
     editQuantity(qty, id) {
-      this.editQty(qty, id);
+      this.edit_quantity(qty, id);
     },
     displayButton() {
       this.d_button = true;
     },
     removeCart() {
-      this.clearCart();
+      this.remove_cart();
     },
     removeItemCart(item) {
-      this.removeProductCart(item);
+      this.remove_item_cart(item);
     },
+    orderCart(){
+      this.order_cart()
+    }
   },
   computed: {
     priceTotal: function () {

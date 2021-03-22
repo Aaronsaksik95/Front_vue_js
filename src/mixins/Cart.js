@@ -24,19 +24,24 @@ export default {
         getCart() {
             return JSON.parse(localStorage.getItem('cart'))
         },
-        removeProductCart(product) {
+        remove_item_cart(product) {
             var cart = JSON.parse(localStorage.getItem('cart'))
             const removeWithIndex = (el) => el._id === product._id;
             const index = cart.findIndex(removeWithIndex);
             cart.splice(index, 1)
             localStorage.setItem('cart', JSON.stringify(cart))
+            if (cart.length == 0) {
+                this.clearCart()
+            }
+            else {
+                document.location.reload();
+            }
+        },
+        remove_cart() {
+            localStorage.removeItem('cart');
             document.location.reload();
         },
-        clearCart() {
-            localStorage.removeItem('cart');
-            this.$router.push("./shops");
-        },
-        editQty(qty, id) {
+        edit_quantity(qty, id) {
             var cart = JSON.parse(localStorage.getItem('cart'))
             const findElement = (el) => el._id === id;
             const index = cart.findIndex(findElement);

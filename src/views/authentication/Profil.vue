@@ -12,8 +12,11 @@
     </div>
     <div class="info-user">
       <label for="">Email</label>
-      <input v-if="edit" v-model="user.email" type="text" />
-      <p v-else>{{ user.email }}</p>
+      <p>{{ user.email }}</p>
+    </div>
+    <div class="info-user">
+      <label for="">Phone</label>
+      <p>{{ user.phone }}</p>
     </div>
     <div class="info-user">
       <label for="">Adresse</label>
@@ -43,7 +46,8 @@
 
 <script>
 import Button from "../../components/Button";
-import VueJwtDecode from "vue-jwt-decode";
+import ApiUsers from '../../mixins/ApiUsers';
+
 export default {
   data: function () {
     return {
@@ -56,6 +60,7 @@ export default {
   components: {
     Button,
   },
+  mixins:[ApiUsers],
   methods: {
     logout: function () {
       localStorage.removeItem("token");
@@ -65,31 +70,10 @@ export default {
       this.edit = true;
     },
     editUser() {
-      const token = localStorage.getItem("token");
-      const decode = VueJwtDecode.decode(token);
-      const URL = `https://api-node-aaron-saksik.herokuapp.com/api/v1/users/${decode.id}`;
-
-      fetch(URL, {
-        method: "PUT",
-        body: JSON.stringify({
-          firstName: this.user.firstName,
-          lastName: this.user.lastName,
-          email: this.user.email,
-          password: this.user.password,
-          phone: this.user.phone,
-          address: this.user.address,
-          city: this.user.city,
-          postalCode: this.user.postalCode,
-          country: this.user.country,
-        }),
-        headers: {
-          Accept: "application/json",
-          Authorization: token,
-        },
-      })
-        .then((res) => res.json())
+      this.putUser()
         .then((data) => {
           this.user = data.user;
+          document.location.reload();
         })
         .catch((error) => {
           console.log(error);
@@ -97,17 +81,7 @@ export default {
     },
   },
   created: function () {
-    const token = localStorage.getItem("token");
-    const decode = VueJwtDecode.decode(token);
-    const URL = `https://api-node-aaron-saksik.herokuapp.com/api/v1/users/${decode.id}`;
-
-    fetch(URL, {
-      headers: {
-        Accept: "application/json",
-        Authorization: token,
-      },
-    })
-      .then((res) => res.json())
+    this.getUser()
       .then((data) => {
         this.user = data.user;
       })

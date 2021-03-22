@@ -48,7 +48,7 @@ const routes = [
         })
       }
       else {
-        next()
+        next();
       }
     }
   },
