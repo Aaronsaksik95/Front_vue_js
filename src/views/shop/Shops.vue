@@ -1,26 +1,38 @@
 <template>
   <div>
     <TitlePage :title="myTitle" />
-    <ProduitGrid :productArray="products" />
+    <div class="search__form">
+      <input type="text" v-model="searchValue"/>
+    </div> 
+    <div class="search__content">
+      <ProductsGrid :productArray="filteredShop"/>
+    </div>
   </div>
 </template>
 
 <script>
 import TitlePage from "../../components/TitlePage";
-import ProduitGrid from "../../components/product/ProductGrid";
+import ProductsGrid from "../../components/product/ProductGrid";
 import ApiProducts from '../../mixins/ApiProducts';
 
 export default {
   name: "Shops",
   components: {
     TitlePage,
-    ProduitGrid,
+    ProductsGrid,
   },
   data: function () {
     return {
       myTitle: "Page shops",
       products: [],
+      searchValue:"",
     };
+  },
+  computed: {
+    filteredShop: function() {
+      let filter = new RegExp(this.searchValue, "i");
+      return this.products.filter(item=>item.title.match(filter));
+    }
   },
   mixins:[ApiProducts],
   created() {

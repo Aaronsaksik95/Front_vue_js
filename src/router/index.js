@@ -8,6 +8,10 @@ import Signup from '../views/authentication/Signup.vue'
 import Profil from '../views/authentication/Profil.vue'
 import ShoppingCart from '../views/shop/ShoppingCart.vue'
 import Orders from '../views/shop/Orders.vue'
+import AdminOrders from '../views/admin/Orders.vue'
+import AdminProducts from '../views/admin/Products.vue'
+import AdminUsers from '../views/admin/Users.vue'
+
 
 Vue.use(VueRouter)
 
@@ -61,6 +65,21 @@ const routes = [
     path: '/orders',
     name: 'Orders',
     component: Orders
+  },
+  {
+    path: '/adminOrders',
+    name: 'AdminOrders',
+    component: AdminOrders
+  },
+  {
+    path: '/adminProducts',
+    name: 'AdminProducts',
+    component: AdminProducts
+  },
+  {
+    path: '/adminUsers',
+    name: 'AdminUsers',
+    component: AdminUsers
   }
 ]
 

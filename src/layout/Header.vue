@@ -8,7 +8,8 @@
             <router-link to="/signup">Inscription</router-link> |
             <router-link to="/profil">Profil</router-link> |
             <router-link to="/cart">Panier</router-link> |
-            <router-link to="/orders">Commandes</router-link> 
+            <router-link to="/orders">Commandes</router-link> |
+            <router-link to="/adminProducts">Admin</router-link> 
         </div>
     </header>
 </template>

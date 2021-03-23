@@ -40,7 +40,7 @@
             </td>
             <td>{{ item.qty * item.price }} €</td>
             <td>
-              <button @click="() => removeProductCart(item)">
+              <button @click="() => removeItemCart(item)">
                 Supprimer le produit
               </button>
             </td>
@@ -48,24 +48,25 @@
         </tbody>
       </table>
       <div>
-        <h3>Total: {{ priceTotal }} €</h3>
-        <h3>Quantité total: {{ qtyTotal }} produits.</h3>
+        <h3>Total: {{ getTotal }} €</h3>
+        <h3>Quantité total: {{ getQty }} produits.</h3>
       </div>
-      <Button
-        class="btn"
-        btnText="Commander"
-        :btnFunction="orderCart"
-      />
+      <Button class="btn" btnText="Commander" :btnFunction="orderCart" />
     </div>
     <h2 v-else>Votre panier est vide.</h2>
   </div>
 </template>
 
 <script>
+import apiConfigs from "../../configs/api.configs";
 import Button from "../../components/Button";
 import TitlePage from "../../components/TitlePage";
 import Cart from "../../mixins/Cart";
-import ApiOrders from "../../mixins/ApiOrders"
+import ApiOrders from "../../mixins/ApiOrders";
+import { loadStripe } from "@stripe/stripe-js";
+import config from "../../configs/stripe.config";
+
+const stripePromise = loadStripe("pk_test_51IYBNvEQHZJwGPKJsBVhHzLtgNp955e6drYz0RILC0zOfwZGYny4lG8DLyN5GmRornKBXXKkKLbb51PgsMEnY1GQ007qQCwhJq");
 
 export default {
   name: "Cart",
@@ -97,19 +98,40 @@ export default {
     removeItemCart(item) {
       this.remove_item_cart(item);
     },
-    orderCart(){
-      this.order_cart()
-    }
+    orderCart: async function () {
+      const stripe = await stripePromise;
+
+      const response = await fetch(
+        `${apiConfigs.apiUrl}create-checkout-session`,
+        {
+          method: "POST",
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+          body: JSON.stringify({
+            amount: this.getTotal*100,
+          }),
+        }
+      );
+      const session = await response.json();
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+      console.log(result);
+      if (result.error) {
+        console.log(result.error);
+      }
+      this.order_cart(this.cart, this.getTotal);
+      this.remove_cart()
+    },
   },
   computed: {
-    priceTotal: function () {
+    getTotal: function () {
       if (this.cart) {
-        return this.getTotal(this.cart);
+        return this.get_total(this.cart);
       }
     },
-    qtyTotal: function () {
+    getQty: function () {
       if (this.cart) {
-        return this.getCartCount(this.cart);
+        return this.get_Qty(this.cart);
       }
     },
   },

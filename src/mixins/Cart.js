@@ -31,7 +31,7 @@ export default {
             cart.splice(index, 1)
             localStorage.setItem('cart', JSON.stringify(cart))
             if (cart.length == 0) {
-                this.clearCart()
+                this.remove_cart()
             }
             else {
                 document.location.reload();
@@ -51,13 +51,13 @@ export default {
             }
             localStorage.setItem('cart', JSON.stringify(cart))
         },
-        getTotal(cart) {
+        get_total(cart) {
             var sum = cart.reduce(function (accumulator, currentValue) {
                 return accumulator + (currentValue.price * currentValue.qty);
             }, 0);
             return sum;
         },
-        getCartCount(cart) {
+        get_Qty(cart) {
             var sum = cart.reduce(function (accumulator, currentValue) {
                 return accumulator + JSON.parse(currentValue.qty);
             }, 0);
