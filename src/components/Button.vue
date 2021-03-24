@@ -28,6 +28,10 @@
             background: blue;
             color:white;
         }
+        &-red {
+            background: rgb(228, 79, 79);
+            color:white;
+        }
         &-green {
             background: green;
             color:white;

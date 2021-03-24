@@ -10,6 +10,7 @@ import ShoppingCart from '../views/shop/ShoppingCart.vue'
 import Orders from '../views/shop/Orders.vue'
 import AdminOrders from '../views/admin/Orders.vue'
 import AdminProducts from '../views/admin/Products.vue'
+import AddProducts from '../views/admin/AddProduct.vue'
 import AdminUsers from '../views/admin/Users.vue'
 
 
@@ -75,6 +76,11 @@ const routes = [
     path: '/adminProducts',
     name: 'AdminProducts',
     component: AdminProducts
+  },
+  {
+    path: '/addProduct',
+    name: 'AddProducts',
+    component: AddProducts
   },
   {
     path: '/adminUsers',
