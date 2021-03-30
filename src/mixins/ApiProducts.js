@@ -3,11 +3,11 @@ const token = localStorage.getItem("token");
 
 export default {
     methods: {
-        getProducts() {
+        get_products() {
             return fetch(`${apiConfigs.apiUrl}products`)
                 .then(res => res.json())
         },
-        getProduct(id) {
+        get_product(id) {
             return fetch(`${apiConfigs.apiUrl}products/${id}`)
                 .then(res => res.json())
         },
@@ -19,7 +19,7 @@ export default {
                     title: this.title,
                     description: this.description,
                     image: this.image,
-                    categories: this.categories
+                    categories: this.idCategories
                 }),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -27,7 +27,24 @@ export default {
                 },
             }).then(res => res.json())
         },
-        delete_products(id) {
+        update_product(id) {
+            return fetch(`${apiConfigs.apiUrl}products/${id}`, {
+                method: "PUT",
+                body: JSON.stringify({
+                    price: this.product.price,
+                    title: this.product.title,
+                    description: this.product.description,
+                    image: this.product.image,
+                    categories: this.idCategories
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: token,
+                },
+            })
+                .then((res) => res.json())
+        },
+        delete_product(id) {
             return fetch(`${apiConfigs.apiUrl}products/${id}`, {
                 method: "DELETE",
                 headers: {

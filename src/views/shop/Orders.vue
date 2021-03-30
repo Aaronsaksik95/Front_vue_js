@@ -5,10 +5,8 @@
         <tr>
           <th>Aperçu</th>
           <th>Titre</th>
-          <th>Quantity</th>
           <th>Price</th>
           <th></th>
-          <th>Total</th>
         </tr>
       </thead>
       <tbody v-for="i in orders" :key="i._id">
@@ -25,12 +23,10 @@
             <img class="img-produits" :src="item.image" alt="image produit" />
           </td>
           <td>{{ item.title }}</td>
-          <td>{{}}</td>
           <td>{{ item.price }} €</td>
           <td>
             <router-link :to="`/product/${item._id}`">Voir</router-link>
           </td>
-          <td>{{ item.price }} €</td>
         </tr>
       </tbody>
     </table>
@@ -59,7 +55,8 @@ export default {
   mixins: [ApiUsers, ApiProducts, ApiOrders],
   methods: {},
   created: function () {
-    this.getUser()
+    
+    this.get_user()
       .then((data) => {
         for (var i = 0; data.user.orders.length > i; i++) {
           this.idOrders.push(data.user.orders[i]._id);

@@ -1,15 +1,15 @@
 <template>
   <div>
-    <HeaderAdmin />
     <form action="" class="form-product">
+      <HeaderAdmin />
       <label>Titre</label>
-      <input class="" type="text" v-model="title" />
+      <input class="" type="text" v-model="product.title" />
       <label>Description</label>
-      <input class="" type="text" v-model="description" />
+      <input class="" type="text" v-model="product.description" />
       <label>Image</label>
-      <input class="" type="text" v-model="image" />
+      <input class="" type="text" v-model="product.image" />
       <label>Prix</label>
-      <input class="" type="number" v-model="price" />
+      <input class="" type="number" v-model="product.price" />
       <label>Catégories</label>
       <input
         @click="displaySuggestion"
@@ -33,45 +33,37 @@
           {{ item }}
         </p>
       </div>
-      <Button class="btn" btnText="Ajouter" :btnFunction="addProduct" />
+      <Button
+        class="btn btn-orange"
+        btnText="Modifier"
+        :btnFunction="() => updateProduct(product._id)"
+      />
     </form>
-    <ProductItem v-if="newProduct._id" :productObject="newProduct" />
   </div>
 </template>
 
 <script>
 import Button from "../../components/Button";
+import HeaderAdmin from "../../layout/HeaderAdmin";
 import ApiCategories from "../../mixins/ApiCategories";
 import ApiProducts from "../../mixins/ApiProducts";
-import ProductItem from "../../components/product/ProductItem";
-import HeaderAdmin from "../../layout/HeaderAdmin";
 
 export default {
-  components: {
-    Button,
-    ProductItem,
-    HeaderAdmin,
-  },
   data: function () {
     return {
-      title: "",
-      description: "",
-      image: "",
-      price: "",
+      product: [],
+      category: "",
       allCategories: [],
       titleCategories: [],
-      newProduct: {},
-      category: "",
       idCategories: [],
       displayDiv: false,
     };
   },
-  mixins: [ApiCategories, ApiProducts],
-  created() {
-    this.get_categoriess().then((data) => {
-      this.allCategories = data.categories;
-    });
+  components: {
+    Button,
+    HeaderAdmin,
   },
+  mixins: [ApiProducts, ApiCategories],
   computed: {
     filteredCategory: function () {
       let filter = new RegExp(this.category, "i");
@@ -79,15 +71,19 @@ export default {
     },
   },
   methods: {
-    addProduct() {
-      this.add_product().then((data) => {
-        this.newProduct = data.product;
-      });
+    updateProduct(id) {
+      this.update_product(id)
+        .then(() => {
+          this.$router.push("../products");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     addCategory() {
-      this.get_categoryy(this.category).then((data) => {
+      this.get_category(this.category).then((data) => {
         if (data.category == null) {
-          this.add_category().then((data) => {
+          this.postCategory().then((data) => {
             this.idCategories.push(data.category._id);
             this.titleCategories.push(data.category.title);
           });
@@ -104,6 +100,22 @@ export default {
       this.displayDiv = true;
     },
   },
+  created: function () {
+    this.get_product(this.$route.params.id)
+      .then((data) => {
+        this.product = data.product;
+        data.product.categories.forEach((category) => {
+          this.titleCategories.push(category.title);
+          this.idCategories.push(category._id);
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    this.get_categories().then((data) => {
+      this.allCategories = data.categories;
+    });
+  },
 };
 </script>
 
@@ -112,15 +124,6 @@ export default {
   input {
     display: block;
     margin: auto;
-  }
-}
-.div_suggestion {
-  height: 200px;
-  width: 15%;
-  margin: auto;
-  overflow: scroll;
-  .suggestion:hover {
-    background-color: bisque;
   }
 }
 </style>

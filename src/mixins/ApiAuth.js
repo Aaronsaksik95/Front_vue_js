@@ -2,7 +2,7 @@ import apiConfigs from "../configs/api.configs";
 
 export default {
     methods: {
-        postUser() {
+        signupUser() {
             return fetch(`${apiConfigs.apiUrl}users`, {
                 method: "POST",
                 body: JSON.stringify({

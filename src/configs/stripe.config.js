@@ -1,5 +1,3 @@
 export default {
-    stripe: {
-        key: process.env.SECRET_KEY_STRIPE
-    }
+    stripe: process.env.SECRET_KEY_STRIPE
 }

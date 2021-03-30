@@ -40,6 +40,10 @@
             background: grey;
             color: black;
         }
+        &-orange {
+            background: rgb(255, 166, 0);
+            color: black;
+        }
     }
     .btn-black {
         background: black;

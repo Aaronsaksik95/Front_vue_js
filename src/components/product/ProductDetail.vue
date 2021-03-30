@@ -4,6 +4,7 @@
     <img :src="productObject.image" alt="image produit" />
     <small>{{ productObject.description }}</small>
     <p>{{ productObject.price }} €</p>
+    <p v-for="item in productObject.categories" :key="item._id">{{item.title}}</p>
     <Button class="btn" btnText="Panier" :btnFunction="addCart" />
   </div>
 </template>
@@ -25,7 +26,7 @@ export default {
   mixins: [Cart],
   methods: {
     addCart(){
-      this.addItemcart(this.productObject)
+      this.add_cart(this.productObject)
     }
   },
 };

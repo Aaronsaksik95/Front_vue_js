@@ -1,22 +1,25 @@
 <template>
   <div>
-      <HeaderAdmin />
+    <HeaderAdmin />
     <div class="search__form">
       <input type="text" v-model="searchValue" />
     </div>
     <table class="table w-50 mx-auto">
       <thead>
         <tr>
+          <th scope="col">Id</th>
           <th scope="col">title</th>
           <th scope="col">image</th>
           <th scope="col">description</th>
           <th scope="col">price</th>
           <th scope="col">categories</th>
           <th scope="col">Supprimer</th>
+          <th scope="col">Modifier</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in filteredShop" :key="item._id">
+          <th>{{ item._id }}</th>
           <th>{{ item.title }}</th>
           <td>
             <img class="img" :src="item.image" alt="image produit" />
@@ -25,7 +28,7 @@
           <td>{{ item.price }} €</td>
           <td>
             <select>
-              <option v-for="i in item.categories" :key="i._id">
+              <option v-for="i in item.categories" :key="i.title">
                 {{ i.title }}
               </option>
             </select>
@@ -34,8 +37,15 @@
             <Button
               class="btn btn-red"
               btnText="Supprimer"
-              :btnFunction="() => deleteProducts(item._id)"
+              :btnFunction="() => deleteProduct(item._id)"
             />
+          </td>
+          <td>
+            <router-link
+              class="btn btn-warning"
+              :to="`./updateProduct/${item._id}`"
+              >Modifier</router-link
+            >
           </td>
         </tr>
       </tbody>
@@ -48,7 +58,7 @@ import TitlePage from "../../components/TitlePage";
 import ProductsGrid from "../../components/product/ProductGrid";
 import ApiProducts from "../../mixins/ApiProducts";
 import Button from "../../components/Button";
-import HeaderAdmin from "../../layout/HeaderAdmin"
+import HeaderAdmin from "../../layout/HeaderAdmin";
 
 export default {
   name: "Shops",
@@ -56,7 +66,7 @@ export default {
     TitlePage,
     ProductsGrid,
     Button,
-    HeaderAdmin
+    HeaderAdmin,
   },
   data: function () {
     return {
@@ -73,15 +83,15 @@ export default {
   },
   mixins: [ApiProducts],
   created() {
-    this.getProducts()
+    this.get_products()
       .then((data) => {
         this.products = data.products;
       })
       .catch((err) => console.log(err));
   },
   methods: {
-    deleteProducts(id) {
-      this.delete_products(id).catch((err) => console.log(err));
+    deleteProduct(id) {
+      this.delete_product(id).catch((err) => console.log(err));
       document.location.reload();
     },
   },

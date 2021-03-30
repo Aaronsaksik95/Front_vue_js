@@ -83,7 +83,7 @@ export default {
   },
   mixins: [Cart, ApiOrders],
   created() {
-    this.cart = this.getCart();
+    this.cart = this.get_cart();
   },
   methods: {
     editQuantity(qty, id) {
@@ -99,8 +99,10 @@ export default {
       this.remove_item_cart(item);
     },
     orderCart: async function () {
-      const stripe = await stripePromise;
+      await this.add_order(this.cart, this.getTotal);
+      await this.remove_cart()
 
+      const stripe = await stripePromise;
       const response = await fetch(
         `${apiConfigs.apiUrl}create-checkout-session`,
         {
@@ -115,12 +117,9 @@ export default {
       const result = await stripe.redirectToCheckout({
         sessionId: session.id,
       });
-      console.log(result);
       if (result.error) {
         console.log(result.error);
       }
-      this.order_cart(this.cart, this.getTotal);
-      this.remove_cart()
     },
   },
   computed: {

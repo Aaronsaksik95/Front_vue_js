@@ -46,9 +46,7 @@ export default {
   },
   mixins: [Cart],
   created() {
-    this.cart = this.getCart();
-    // this.total = this.getTotal(this.cartArray);
-    // this.totalQty = this.getCartCount(this.cartArray);
+    this.cart = this.get_cart();
   },
   methods: {
     removeCart() {
@@ -60,7 +58,7 @@ export default {
       return this.getTotal(this.cartArray);
     },
     qtyTotal: function () {
-      return this.getCartCount(this.cartArray);
+      return this.get_cartCount(this.cartArray);
     }
   }
 };

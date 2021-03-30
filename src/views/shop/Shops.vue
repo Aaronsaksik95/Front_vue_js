@@ -36,7 +36,7 @@ export default {
   },
   mixins:[ApiProducts],
   created() {
-    this.getProducts()
+    this.get_products()
       .then((data) => {
         this.products = data.products;
       })

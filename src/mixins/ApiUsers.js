@@ -4,7 +4,15 @@ const token = localStorage.getItem("token");
 
 export default {
     methods: {
-        getUser() {
+        get_users() {
+            return fetch(`${apiConfigs.apiUrl}users`, {
+                headers: {
+                    Accept: "application/json",
+                    Authorization: token,
+                },
+            }).then((res) => res.json())
+        },
+        get_user() {
             const decode = VueJwtDecode.decode(token)
             return fetch(`${apiConfigs.apiUrl}users/${decode.id}`, {
                 headers: {
@@ -13,26 +21,44 @@ export default {
                 },
             }).then((res) => res.json())
         },
-        postUser() {
-            fetch(`${apiConfigs.apiUrl}users`, {
-                method: "POST",
-                body: JSON.stringify({
-                    firstName: this.firstName,
-                    lastName: this.lastName,
-                    email: this.email,
-                    password: this.password,
-                    phone: this.phone,
-                    address: this.address,
-                    city: this.city,
-                    postalCode: this.postalCode,
-                    country: this.country,
-                }),
-                headers: { "Content-type": "application/json; charset=UTF-8" },
+        get_user_admin(id) {
+            return fetch(`${apiConfigs.apiUrl}users/${id}`, {
+                headers: {
+                    Accept: "application/json",
+                    Authorization: token,
+                },
             }).then((res) => res.json())
         },
-        putUser() {
+        delete_user(id) {
+            return fetch(`${apiConfigs.apiUrl}users/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: token,
+                },
+            }).then(res => res.json())
+        },
+        update_user() {
             const decode = VueJwtDecode.decode(token)
             return fetch(`${apiConfigs.apiUrl}users/${decode.id}`, {
+                method: "PUT",
+                body: JSON.stringify({
+                    firstName: this.user.firstName,
+                    lastName: this.user.lastName,
+                    address: this.user.address,
+                    city: this.user.city,
+                    postalCode: this.user.postalCode,
+                    country: this.user.country,
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: token,
+                },
+            })
+                .then((res) => res.json())
+        },
+        update_user_admin(id) {
+            return fetch(`${apiConfigs.apiUrl}users/${id}`, {
                 method: "PUT",
                 body: JSON.stringify({
                     firstName: this.user.firstName,

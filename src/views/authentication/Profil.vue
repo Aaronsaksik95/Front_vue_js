@@ -70,7 +70,7 @@ export default {
       this.edit = true;
     },
     editUser() {
-      this.putUser()
+      this.update_user()
         .then((data) => {
           this.user = data.user;
           document.location.reload();
@@ -81,7 +81,7 @@ export default {
     },
   },
   created: function () {
-    this.getUser()
+    this.get_user()
       .then((data) => {
         this.user = data.user;
       })

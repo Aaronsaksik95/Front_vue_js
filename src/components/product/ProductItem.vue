@@ -26,7 +26,7 @@ export default {
   mixins: [Cart],
   methods: {
     addCart(){
-      this.addItemcart(this.productObject)
+      this.add_cart(this.productObject)
     }
   },
 };

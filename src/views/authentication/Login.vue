@@ -30,7 +30,7 @@ export default {
         .then((data) => {
           localStorage.setItem("token", data.token);
           if (data.auth) {
-            this.$router.push("./profil");
+            this.$router.push("./shops");
           } else {
             this.message = data.message;
           }

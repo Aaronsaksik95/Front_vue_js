@@ -23,7 +23,7 @@ export default {
   },
   mixins: [ApiProducts],
   created() {
-    this.getProduct(this.$route.params.id)
+    this.get_product(this.$route.params.id)
       .then((data) => {
         this.product = data.product;
       })

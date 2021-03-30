@@ -1,6 +1,6 @@
 export default {
     methods: {
-        addItemcart(product) {
+        add_cart(product) {
             const newItem = {
                 qty: 1,
                 _id: product._id,
@@ -21,7 +21,7 @@ export default {
 
 
         },
-        getCart() {
+        get_cart() {
             return JSON.parse(localStorage.getItem('cart'))
         },
         remove_item_cart(product) {
@@ -39,7 +39,6 @@ export default {
         },
         remove_cart() {
             localStorage.removeItem('cart');
-            document.location.reload();
         },
         edit_quantity(qty, id) {
             var cart = JSON.parse(localStorage.getItem('cart'))

@@ -1,17 +1,27 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import authAdmin from '../middleware/authAdmin'
+import auth from '../middleware/auth'
+
+//Shops
 import Home from '../views/Home.vue'
 import Shops from '../views/shop/Shops.vue'
 import Product from '../views/shop/Product.vue'
+import ShoppingCart from '../views/shop/ShoppingCart.vue'
+import Orders from '../views/shop/Orders.vue'
+
+//Authentication
 import Login from '../views/authentication/Login.vue'
 import Signup from '../views/authentication/Signup.vue'
 import Profil from '../views/authentication/Profil.vue'
-import ShoppingCart from '../views/shop/ShoppingCart.vue'
-import Orders from '../views/shop/Orders.vue'
+
+//Back Office
 import AdminOrders from '../views/admin/Orders.vue'
 import AdminProducts from '../views/admin/Products.vue'
 import AddProducts from '../views/admin/AddProduct.vue'
 import AdminUsers from '../views/admin/Users.vue'
+import UpdateUser from '../views/admin/UpdateUser.vue'
+import UpdateProduct from '../views/admin/UpdateProduct.vue'
 
 
 Vue.use(VueRouter)
@@ -33,6 +43,18 @@ const routes = [
     component: Product
   },
   {
+    path: '/cart',
+    name: 'ShoppingCart',
+    component: ShoppingCart,
+    beforeEnter: auth
+  },
+  {
+    path: '/orders',
+    name: 'Orders',
+    component: Orders,
+    beforeEnter: auth
+  },
+  {
     path: '/login',
     name: 'Login',
     component: Login
@@ -46,46 +68,47 @@ const routes = [
     path: '/profil',
     name: 'Profil',
     component: Profil,
-    beforeEnter(to, from, next) {
-      if (!localStorage.getItem('token')) {
-        next({
-          name: "Login"
-        })
-      }
-      else {
-        next();
-      }
-    }
+    beforeEnter: auth
   },
   {
-    path: '/cart',
-    name: 'ShoppingCart',
-    component: ShoppingCart
-  },
-  {
-    path: '/orders',
-    name: 'Orders',
-    component: Orders
-  },
-  {
-    path: '/adminOrders',
+    path: '/admin/Orders',
     name: 'AdminOrders',
-    component: AdminOrders
+    component: AdminOrders,
+    beforeEnter: authAdmin
   },
   {
-    path: '/adminProducts',
+    path: '/admin/Products',
     name: 'AdminProducts',
-    component: AdminProducts
+    component: AdminProducts,
+    beforeEnter: authAdmin
   },
   {
-    path: '/addProduct',
+    path: '/admin/addProduct',
     name: 'AddProducts',
-    component: AddProducts
+    component: AddProducts,
+    beforeEnter: authAdmin
   },
   {
-    path: '/adminUsers',
+    path: '/admin/Users',
     name: 'AdminUsers',
-    component: AdminUsers
+    component: AdminUsers,
+    beforeEnter: authAdmin
+  },
+  {
+    path: '/admin/updateProduct/:id',
+    name: 'UpdateProduct',
+    component: UpdateProduct,
+    beforeEnter: authAdmin
+  },
+  {
+    path: '/admin/updateUser/:id',
+    name: 'UpdateUser',
+    component: UpdateUser,
+    beforeEnter: authAdmin
+  },
+  {
+    path: '*',
+    redirect: '/shops'
   }
 ]
 

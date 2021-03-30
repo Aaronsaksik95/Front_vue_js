@@ -4,7 +4,7 @@ const token = localStorage.getItem("token");
 
 export default {
     methods: {
-        order_cart(cart, total) {
+        add_order(cart, total) {
             const decode = VueJwtDecode.decode(token)
             var products = []
             cart.forEach(item => {
@@ -22,6 +22,14 @@ export default {
         },
         get_order(id){
             return fetch(`${apiConfigs.apiUrl}orders/${id}`, {
+                headers: {
+                    Accept: "application/json",
+                    Authorization: token,
+                },
+            }).then((res) => res.json())
+        },
+        get_orders(){
+            return fetch(`${apiConfigs.apiUrl}orders`, {
                 headers: {
                     Accept: "application/json",
                     Authorization: token,
