@@ -11,8 +11,10 @@
           <th scope="col">Total</th>
           <th scope="col">Prénom</th>
           <th scope="col">Nom</th>
+          <th scope="col">Email</th>
           <th scope="col">date</th>
           <th scope="col">Produit</th>
+          <th scope="col">Supprimer</th>
         </tr>
       </thead>
       <tbody>
@@ -21,6 +23,7 @@
           <td>{{ item.total }} €</td>
           <td>{{ item.user.firstName }}</td>
           <td>{{ item.user.lastName }}</td>
+          <td>{{ item.user.email }}</td>
           <td>{{ item.date }}</td>
           <td>
             <select>
@@ -28,6 +31,13 @@
                 {{ i.title }}
               </option>
             </select>
+          </td>
+          <td>
+            <Button
+              class="btn btn-red"
+              btnText="Supprimer"
+              :btnFunction="() => deleteOrder(item._id)"
+            />
           </td>
         </tr>
       </tbody>
@@ -71,6 +81,10 @@ export default {
       .catch((err) => console.log(err));
   },
   methods: {
+    deleteOrder(id) {
+      this.delete_order(id).catch((err) => console.log(err));
+      document.location.reload();
+    },
   },
 };
 </script>

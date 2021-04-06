@@ -5,6 +5,10 @@
       <input class="" type="password" v-model="password" />
       <Button class="btn" btnText="Connexion" :btnFunction="login" />
       <p v-if="message">{{ message }}</p>
+      <small>
+        Vous n'êtes pas encore membre ?
+        <router-link to="/signup">Rejoignez-nous.</router-link>
+      </small>
     </form>
   </div>
 </template>

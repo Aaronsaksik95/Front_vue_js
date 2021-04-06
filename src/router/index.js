@@ -4,10 +4,13 @@ import authAdmin from '../middleware/authAdmin'
 import auth from '../middleware/auth'
 
 //Shops
+import Man from '../views/shop/Man.vue'
+import Woman from '../views/shop/Woman.vue'
+import Kids from '../views/shop/Kids.vue'
 import Home from '../views/Home.vue'
-import Shops from '../views/shop/Shops.vue'
 import Product from '../views/shop/Product.vue'
 import ShoppingCart from '../views/shop/ShoppingCart.vue'
+import Whish from '../views/shop/Whish.vue'
 import Orders from '../views/shop/Orders.vue'
 
 //Authentication
@@ -28,14 +31,24 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: '/man',
+    name: 'Man',
+    component: Man
   },
   {
-    path: '/shops',
-    name: 'Shops',
-    component: Shops
+    path: '/woman',
+    name: 'Woman',
+    component: Woman
+  },
+  {
+    path: '/kids',
+    name: 'Kids',
+    component: Kids
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: Home
   },
   {
     path: '/product/:id',
@@ -45,8 +58,12 @@ const routes = [
   {
     path: '/cart',
     name: 'ShoppingCart',
-    component: ShoppingCart,
-    beforeEnter: auth
+    component: ShoppingCart
+  },
+  {
+    path: '/whish',
+    name: 'Whish',
+    component: Whish
   },
   {
     path: '/orders',

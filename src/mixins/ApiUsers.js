@@ -20,6 +20,7 @@ export default {
                     Authorization: token,
                 },
             }).then((res) => res.json())
+            
         },
         get_user_admin(id) {
             return fetch(`${apiConfigs.apiUrl}users/${id}`, {
@@ -48,7 +49,7 @@ export default {
                     address: this.user.address,
                     city: this.user.city,
                     postalCode: this.user.postalCode,
-                    country: this.user.country,
+                    country: this.user.country
                 }),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -67,6 +68,7 @@ export default {
                     city: this.user.city,
                     postalCode: this.user.postalCode,
                     country: this.user.country,
+                    isAdmin: this.user.isAdmin
                 }),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",

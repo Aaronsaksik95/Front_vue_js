@@ -1,35 +1,38 @@
 <template>
   <div>
-    <table class="table-cart">
-      <thead>
-        <tr>
-          <th>Aperçu</th>
-          <th>Titre</th>
-          <th>Price</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody v-for="i in orders" :key="i._id">
-        <tr>
-          <th>
-            <h3>Commande n° {{ i._id }}</h3>
-          </th>
-          <th>
-            <h4>Total: {{ i.total }} €</h4>
-          </th>
-        </tr>
-        <tr v-for="item in i.products" :key="item._id">
-          <td>
-            <img class="img-produits" :src="item.image" alt="image produit" />
-          </td>
-          <td>{{ item.title }}</td>
-          <td>{{ item.price }} €</td>
-          <td>
-            <router-link :to="`/product/${item._id}`">Voir</router-link>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div v-if="orders.length != 0">
+      <table class="table-cart">
+        <thead>
+          <tr>
+            <th>Aperçu</th>
+            <th>Titre</th>
+            <th>Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody v-for="i in orders" :key="i._id">
+          <tr>
+            <th>
+              <h3>Commande n° {{ i._id }}</h3>
+            </th>
+            <th>
+              <h4>Total: {{ i.total }} €</h4>
+            </th>
+          </tr>
+          <tr v-for="item in i.products" :key="item._id">
+            <td>
+              <img class="img-produits" :src="item.image" alt="image produit" />
+            </td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.price }} €</td>
+            <td>
+              <router-link :to="`/product/${item._id}`">Voir</router-link>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h2 v-else>Vous n'avez aucune commande.</h2>
   </div>
 </template>
 
@@ -55,7 +58,6 @@ export default {
   mixins: [ApiUsers, ApiProducts, ApiOrders],
   methods: {},
   created: function () {
-    
     this.get_user()
       .then((data) => {
         for (var i = 0; data.user.orders.length > i; i++) {

@@ -41,7 +41,7 @@
             <td>{{ item.qty * item.price }} €</td>
             <td>
               <button @click="() => removeItemCart(item)">
-                Supprimer le produit
+                Supprimer
               </button>
             </td>
           </tr>
@@ -58,15 +58,10 @@
 </template>
 
 <script>
-import apiConfigs from "../../configs/api.configs";
 import Button from "../../components/Button";
 import TitlePage from "../../components/TitlePage";
 import Cart from "../../mixins/Cart";
 import ApiOrders from "../../mixins/ApiOrders";
-import { loadStripe } from "@stripe/stripe-js";
-import config from "../../configs/stripe.config";
-
-const stripePromise = loadStripe("pk_test_51IYBNvEQHZJwGPKJsBVhHzLtgNp955e6drYz0RILC0zOfwZGYny4lG8DLyN5GmRornKBXXKkKLbb51PgsMEnY1GQ007qQCwhJq");
 
 export default {
   name: "Cart",
@@ -99,27 +94,7 @@ export default {
       this.remove_item_cart(item);
     },
     orderCart: async function () {
-      await this.add_order(this.cart, this.getTotal);
-      await this.remove_cart()
-
-      const stripe = await stripePromise;
-      const response = await fetch(
-        `${apiConfigs.apiUrl}create-checkout-session`,
-        {
-          method: "POST",
-          headers: { "Content-type": "application/json; charset=UTF-8" },
-          body: JSON.stringify({
-            amount: this.getTotal*100,
-          }),
-        }
-      );
-      const session = await response.json();
-      const result = await stripe.redirectToCheckout({
-        sessionId: session.id,
-      });
-      if (result.error) {
-        console.log(result.error);
-      }
+      await this.order(this.cart, this.getTotal);
     },
   },
   computed: {

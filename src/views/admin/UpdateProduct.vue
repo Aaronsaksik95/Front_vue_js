@@ -4,6 +4,11 @@
       <HeaderAdmin />
       <label>Titre</label>
       <input class="" type="text" v-model="product.title" />
+      <select v-model="product.genre">
+        <option value="homme">Homme</option>
+        <option value="femme">Femme</option>
+        <option value="enfant">Enfant</option>
+      </select>
       <label>Description</label>
       <input class="" type="text" v-model="product.description" />
       <label>Image</label>

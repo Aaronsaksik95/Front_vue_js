@@ -11,12 +11,24 @@ export default {
             return fetch(`${apiConfigs.apiUrl}products/${id}`)
                 .then(res => res.json())
         },
+        get_product_category(title) {
+            return fetch(`${apiConfigs.apiUrl}products`, {
+                body: JSON.stringify({
+                    category: title
+                }),
+            }).then(res => res.json())
+        },
+        get_products_genre(genre) {
+            return fetch(`${apiConfigs.apiUrl}products/genre/${genre}`, {
+            }).then(res => res.json())
+        },
         add_product() {
             return fetch(`${apiConfigs.apiUrl}products`, {
                 method: "POST",
                 body: JSON.stringify({
                     price: this.price,
                     title: this.title,
+                    genre: this.genre,
                     description: this.description,
                     image: this.image,
                     categories: this.idCategories
@@ -33,6 +45,7 @@ export default {
                 body: JSON.stringify({
                     price: this.product.price,
                     title: this.product.title,
+                    genre: this.product.genre,
                     description: this.product.description,
                     image: this.product.image,
                     categories: this.idCategories

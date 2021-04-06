@@ -4,6 +4,12 @@
     <form action="" class="form-product">
       <label>Titre</label>
       <input class="" type="text" v-model="title" />
+      <label>Genre</label>
+      <select v-model="genre">
+        <option value="homme">Homme</option>
+        <option value="femme">Femme</option>
+        <option value="enfant">Enfant</option>
+      </select>
       <label>Description</label>
       <input class="" type="text" v-model="description" />
       <label>Image</label>
@@ -55,6 +61,7 @@ export default {
   data: function () {
     return {
       title: "",
+      genre: "",
       description: "",
       image: "",
       price: "",
@@ -68,7 +75,7 @@ export default {
   },
   mixins: [ApiCategories, ApiProducts],
   created() {
-    this.get_categoriess().then((data) => {
+    this.get_categories().then((data) => {
       this.allCategories = data.categories;
     });
   },
@@ -85,7 +92,7 @@ export default {
       });
     },
     addCategory() {
-      this.get_categoryy(this.category).then((data) => {
+      this.get_category(this.category).then((data) => {
         if (data.category == null) {
           this.add_category().then((data) => {
             this.idCategories.push(data.category._id);

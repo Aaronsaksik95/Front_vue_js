@@ -7,12 +7,14 @@
     <p class="price-produits">{{ productObject.price }} €</p>
     </router-link>
     <Button class="btn" btnText="Panier" :btnFunction="addCart" />
+    <Button class="btn" btnText="Favoris" :btnFunction="addWhish" />
   </div>
 </template>
 
 <script>
 import Button from "../../components/Button";
 import Cart from '../../mixins/Cart';
+import Whish from '../../mixins/Whish'
 export default {
   components: {
     Button
@@ -23,11 +25,14 @@ export default {
         type: Object
     }
   },
-  mixins: [Cart],
+  mixins: [Cart, Whish],
   methods: {
     addCart(){
       this.add_cart(this.productObject)
-    }
+    },
+    addWhish(){
+      this.add_whish(this.productObject)
+    },
   },
 };
 </script>

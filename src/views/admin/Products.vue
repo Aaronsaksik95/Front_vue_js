@@ -9,6 +9,7 @@
         <tr>
           <th scope="col">Id</th>
           <th scope="col">title</th>
+          <th scope="col">genre</th>
           <th scope="col">image</th>
           <th scope="col">description</th>
           <th scope="col">price</th>
@@ -21,6 +22,7 @@
         <tr v-for="item in filteredShop" :key="item._id">
           <th>{{ item._id }}</th>
           <th>{{ item.title }}</th>
+          <th>{{ item.genre }}</th>
           <td>
             <img class="img" :src="item.image" alt="image produit" />
           </td>

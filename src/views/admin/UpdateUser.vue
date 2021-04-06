@@ -33,6 +33,10 @@
       <label for="">Pays</label>
       <input v-model="user.country" type="text" />
     </div>
+    <div class="info-user">
+      <label for="">Is Admin</label>
+      <input v-model="user.isAdmin" type="checkbox" />
+    </div>
     <Button
       class="btn btn-orange"
       btnText="Modifier"
