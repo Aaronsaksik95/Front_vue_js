@@ -1,5 +1,6 @@
 <template>
   <header class="header__main">
+    <div class="cap"></div>
     <div class="header__nav">
       <div class="link-home">
         <router-link to="/home">
@@ -41,7 +42,7 @@
 </template>
 
 <script>
-import Search from "../components/Search";
+import Search from "../components/product/Search";
 export default {
   components: {
     Search,
@@ -50,30 +51,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.cap {
+  width: 100%;
+  height: 30px;
+  background-color: rgb(235, 235, 235);
+}
 .link-home {
-  margin: 0px 100px 10px 10px;
+  margin: 5px 100px 0px 10px;
   img {
     width: 60px;
   }
 }
 .header__nav {
+  //  @media(max-width: 768px){
+  //      display: none;
+  //  }
   display: flex;
+  margin-bottom: 20px;
   .nav-page {
     ul {
       font-weight: bold;
       display: flex;
       list-style-type: none;
+      margin-bottom: 0px;
       li {
         margin: 20px;
       }
     }
   }
   .search {
-    margin: 10px 0px 0px 70px;
+    margin: 25px 0px 0px 70px;
     width: 300px;
   }
   .nav-tool {
-      margin-left: 0px;
+    margin-left: 0px;
     ul {
       font-weight: bold;
       display: flex;

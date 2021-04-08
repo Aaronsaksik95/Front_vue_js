@@ -16,8 +16,9 @@
 <style lang="scss" scoped>
     .btn {
         display:inline-block;
-        border-radius: 3px;
+        border-radius: 10px;
         font-size: 18px;
+        padding: 10px;
         margin: 10px;
         transition: 0.3s all;
         border: 0px;
@@ -28,8 +29,8 @@
             background: blue;
             color:white;
         }
-        &-red {
-            background: rgb(228, 79, 79);
+        &-black {
+            background: rgb(34, 34, 34);
             color:white;
         }
         &-green {
@@ -45,21 +46,9 @@
             color: black;
         }
     }
-    .btn-black {
-        background: black;
-        color: white;
-        &:hover {
-            background:white;
-            color: black;
-        }
-    }
-    .btn-white {
-        background:white;
-        color: black;
-        border: 1px solid black;
-        &:hover {
-            background:black;
-            color:white;
+    .btn{
+        &-large {
+            width: 200px;
         }
     }
 

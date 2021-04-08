@@ -39,6 +39,7 @@ export default {
         },
         remove_cart() {
             localStorage.removeItem('cart');
+            document.location.reload();
         },
         edit_quantity(qty, id) {
             var cart = JSON.parse(localStorage.getItem('cart'))

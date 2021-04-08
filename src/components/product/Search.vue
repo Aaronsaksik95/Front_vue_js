@@ -1,5 +1,5 @@
 <template>
-  <div v-click-outside="DivResultNone" class="div-search">
+  <div v-click-outside="DivResultNone">
     <input
       class="search"
       type="text"
@@ -17,7 +17,7 @@
   </div>
 </template>
 <script>
-import ApiProducts from "../mixins/ApiProducts";
+import ApiProducts from "../../mixins/ApiProducts";
 import ClickOutside from "vue-click-outside";
 export default {
   data() {

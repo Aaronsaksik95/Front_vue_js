@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import Button from "../../components/Button";
+import Button from "../../components/tools/Button";
 import HeaderAdmin from "../../layout/HeaderAdmin";
 import ApiCategories from "../../mixins/ApiCategories";
 import ApiProducts from "../../mixins/ApiProducts";

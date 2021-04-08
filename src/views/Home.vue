@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import TitlePage from "../components/TitlePage";
+import TitlePage from "../components/tools/TitlePage";
 import ProductsGrid from "../components/product/ProductGrid";
 import ApiProducts from "../mixins/ApiProducts";
 import ApiCategories from "../mixins/ApiCategories";
@@ -32,7 +32,7 @@ export default {
   },
   data: function () {
     return {
-      myTitle: "Page shops",
+      myTitle: "Shop aaron",
       products: [],
       searchValue: "",
       categories: [],

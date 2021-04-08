@@ -4,7 +4,7 @@
       <TitlePage :title="myTitle" />
       <Button
         class="btn"
-        btnText="Supprimer le panier"
+        btnText="Supprimer les favoris"
         :btnFunction="removeWhish"
       />
       <table class="table-whish">
@@ -29,9 +29,7 @@
               <router-link :to="`/product/${item._id}`">Voir</router-link>
             </td>
             <td>
-              <button @click="() => removeItemWhish(item)">
-                Supprimer
-              </button>
+              <Button class="btn" btnText="Supprimer" :btnFunction="() => removeItemWhish(item)"/>
             </td>
             <td>
               <Button class="btn" btnText="Panier" :btnFunction="() => addCart(item)" />
@@ -45,8 +43,8 @@
 </template>
 
 <script>
-import Button from "../../components/Button";
-import TitlePage from "../../components/TitlePage";
+import Button from "../../components/tools/Button";
+import TitlePage from "../../components/tools/TitlePage";
 import Cart from "../../mixins/Cart";
 import Whish from "../../mixins/Whish";
 

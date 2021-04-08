@@ -46,9 +46,9 @@
 </template>
 
 <script>
-import TitlePage from "../../components/TitlePage";
+import TitlePage from "../../components/tools/TitlePage";
 import ApiProducts from "../../mixins/ApiProducts";
-import Button from "../../components/Button";
+import Button from "../../components/tools/Button";
 import HeaderAdmin from "../../layout/HeaderAdmin";
 import ApiOrders from "../../mixins/ApiOrders";
 

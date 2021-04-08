@@ -58,8 +58,8 @@
 </template>
 
 <script>
-import Button from "../../components/Button";
-import TitlePage from "../../components/TitlePage";
+import Button from "../../components/tools/Button";
+import TitlePage from "../../components/tools/TitlePage";
 import Cart from "../../mixins/Cart";
 import ApiOrders from "../../mixins/ApiOrders";
 

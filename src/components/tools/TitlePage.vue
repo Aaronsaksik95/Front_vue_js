@@ -22,9 +22,10 @@
         margin: 40px 0px;
         h1 {
             font-size: 20px;
+            font-weight: bold;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color:grey;
+            color:rgb(250, 84, 0);
         }
     }
 </style>

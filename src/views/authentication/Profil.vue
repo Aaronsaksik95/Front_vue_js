@@ -1,5 +1,6 @@
 <template>
   <div>
+    <TitlePage title="Inscription" />
     <div class="info-user">
       <label for="">Prenom</label>
       <input v-if="edit" v-model="user.firstName" type="text" />
@@ -45,8 +46,9 @@
 </template>
 
 <script>
-import Button from "../../components/Button";
-import ApiUsers from '../../mixins/ApiUsers';
+import TitlePage from "../../components/tools/TitlePage";
+import Button from "../../components/tools/Button";
+import ApiUsers from "../../mixins/ApiUsers";
 
 export default {
   data: function () {
@@ -59,8 +61,9 @@ export default {
   },
   components: {
     Button,
+    TitlePage,
   },
-  mixins:[ApiUsers],
+  mixins: [ApiUsers],
   methods: {
     logout: function () {
       localStorage.removeItem("token");
@@ -80,7 +83,7 @@ export default {
         });
     },
   },
-  created: function () {
+  mounted: function () {
     this.get_user()
       .then((data) => {
         this.user = data.user;

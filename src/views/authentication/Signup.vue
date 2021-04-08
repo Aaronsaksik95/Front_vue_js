@@ -1,36 +1,43 @@
 <template>
   <div>
+    <TitlePage title="Inscription" />
     <form action="" class="form-signup">
-      <label>Prenom</label>
-      <input class="" type="text" v-model="firstName" />
-      <label>Nom</label>
-      <input class="" type="text" v-model="lastName" />
-      <label>Email</label>
-      <input class="" type="email" v-model="email" />
-      <label>Mot de passe</label>
-      <input class="" type="password" v-model="password" />
-      <label>Téléphone</label>
-      <input class="" type="tel" v-model="phone" />
-      <label>Adresse</label>
-      <input class="" type="text" v-model="address" />
-      <label>Ville</label>
-      <input class="" type="text" v-model="city" />
-      <label>Code postal</label>
-      <input class="" type="text" v-model="postalCode" />
-      <label>Pays</label>
-      <input class="" type="text" v-model="country" />
-      <Button class="btn" btnText="Connexion" :btnFunction="signup" />
-      <!-- <p v-if="message">{{ message }}</p> -->
+      <input placeholder="Prenom" type="text" v-model="firstName" />
+      <input placeholder="Nom" type="text" v-model="lastName" />
+      <input placeholder="Email" type="email" v-model="email" />
+      <input
+        placeholder="Mot de passe"
+        class=""
+        type="password"
+        v-model="password"
+      />
+      <input placeholder="Téléphone" type="tel" v-model="phone" />
+      <input placeholder="Adresse" type="text" v-model="address" />
+      <input placeholder="Ville" type="text" v-model="city" />
+      <input
+        placeholder="Code postal"
+        class=""
+        type="text"
+        v-model="postalCode"
+      />
+      <input placeholder="Pays" type="text" v-model="country" />
+      <Button
+        class="btn btn-large btn-black"
+        btnText="Inscription"
+        :btnFunction="signup"
+      />
     </form>
   </div>
 </template>
 
 <script>
-import Button from "../../components/Button";
+import Button from "../../components/tools/Button";
+import TitlePage from "../../components/tools/TitlePage";
 import ApiAuth from "../../mixins/ApiAuth";
 export default {
   components: {
     Button,
+    TitlePage,
   },
   data: function () {
     return {
@@ -66,10 +73,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.form-signup {
-  input {
-    display: block;
-    margin: auto;
-  }
-}
 </style>

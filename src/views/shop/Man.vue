@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import TitlePage from "../../components/TitlePage";
+import TitlePage from "../../components/tools/TitlePage";
 import ApiProducts from "../../mixins/ApiProducts";
 import ProductsGrid from "../../components/product/ProductGrid";
 export default {

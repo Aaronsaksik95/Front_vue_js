@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import TitlePage from "../../components/TitlePage";
+import TitlePage from "../../components/tools/TitlePage";
 import ProductDetail from "../../components/product/ProductDetail";
 import ApiProducts from '../../mixins/ApiProducts';
 

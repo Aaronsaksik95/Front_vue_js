@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import TitlePage from "../TitlePage";
-import Button from "../../components/Button";
+import TitlePage from "../tools/TitlePage";
+import Button from "../tools/Button";
 import Cart from '../../mixins/Cart';
 export default {
   components: {

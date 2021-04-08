@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <Header/>
+    <Header />
 
     <main>
-      <router-view/>
+      <router-view />
     </main>
-  
-    <Footer/>
+
+    <Footer />
   </div>
 </template>
 
@@ -16,9 +16,10 @@ import Footer from "./layout/Footer";
 
 export default {
   components: {
-    Header, Footer
-  }
-}
+    Header,
+    Footer,
+  },
+};
 </script>
 
 <style lang="scss">
@@ -31,6 +32,16 @@ export default {
   a {
     color: black;
     text-decoration: none;
+  }
+  input {
+    display: block;
+    border-radius: 10px;
+    height: 35px;
+    width: 250px;
+    border: 1px solid rgb(95, 95, 95);
+    text-indent: 3px;
+    margin: 10px auto 10px auto;
+
   }
 }
 </style>

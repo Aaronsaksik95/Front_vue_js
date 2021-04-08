@@ -46,7 +46,7 @@ const routes = [
     component: Kids
   },
   {
-    path: '/home',
+    path: '/',
     name: 'Home',
     component: Home
   },
@@ -125,7 +125,7 @@ const routes = [
   },
   {
     path: '*',
-    redirect: '/shops'
+    redirect: '/'
   }
 ]
 

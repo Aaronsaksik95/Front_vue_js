@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import Button from "../../components/Button";
+import Button from "../../components/tools/Button";
 import ApiOrders from "../../mixins/ApiOrders";
 import ApiProducts from "../../mixins/ApiProducts";
 import ApiUsers from "../../mixins/ApiUsers";
