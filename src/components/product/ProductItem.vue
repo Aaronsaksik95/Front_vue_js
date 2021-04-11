@@ -13,10 +13,18 @@
           <div class="infos">
             <h5 class="title-produit">{{ productObject.title }}</h5>
             <h6 class="genre-produit">{{ productObject.genre }}</h6>
-            <p v-if="productObject.description.length < 25" class="desc-produit">
+            <p
+              v-if="productObject.description.length < 25"
+              class="desc-produit"
+            >
               {{ productObject.description }}
             </p>
-            <p v-else @mouseover="descPlus" @mouseout="descPlus" class="desc-produit">
+            <p
+              v-else
+              @mouseover="descPlus"
+              @mouseout="descPlus"
+              class="desc-produit"
+            >
               Afficher description
             </p>
             <p
@@ -29,21 +37,11 @@
           </div>
         </router-link>
         <div class="tools">
-          <div>
-            <img
-              class="img-icon"
-              src="../../assets/cart.png"
-              alt=""
-              @click="addCart"
-            />
+          <div @click="addCart">
+            <img class="img-icon" src="../../assets/cart.png" alt="" />
           </div>
-          <div>
-            <img
-              class="img-icon"
-              src="../../assets/whish.png"
-              alt=""
-              @click="addWhish"
-            />
+          <div @click="addWhish">
+            <img class="img-icon" src="../../assets/whish.png" alt="" />
           </div>
         </div>
       </div>
@@ -92,22 +90,32 @@ export default {
 <style lang="scss" scoped>
 .card {
   border: 0px;
+  margin-bottom: 30px;
 }
 .product {
+  a {
+    color: black;
+  }
   font-size: 20px;
   .img-produits {
     width: 80%;
-    padding: 10px;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
   }
   .info-tools {
     display: flex;
     justify-content: space-around;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    padding: 5px;
+    width: 78%;
+    margin: auto;
     .infos {
       position: relative;
       text-align: left;
       .title-produit {
-        color: rgb(250, 84, 0);
-        margin: 0px;
+        color: #39cdd8;
+        margin: 5px 0px 7px 0px;
         width: 250px;
         overflow: hidden;
       }
@@ -118,10 +126,11 @@ export default {
       .desc-produit {
         color: rgb(102, 102, 102);
         margin: 0px;
+        font-size: 15px;
       }
       .desc-plus {
         position: absolute;
-        top: 80px;
+        top: 50px;
         border-radius: 10px;
         padding: 5px;
         font-size: 13px;
@@ -131,6 +140,7 @@ export default {
       }
       .price-produit {
         font-weight: bold;
+        margin: 0px;
       }
     }
     .tools {
@@ -138,14 +148,15 @@ export default {
         background-color: rgb(167, 167, 167);
       }
       div {
-        margin-top: 10px;
+        margin-top: 6px;
         width: 35px;
         height: 35px;
         border-radius: 50px;
         background-color: rgb(219, 219, 219);
         .img-icon {
-          margin-top: 15%;
-          width: 23px;
+          margin-top: 10%;
+          width: 80%;
+          border-radius: 10px;
         }
       }
     }

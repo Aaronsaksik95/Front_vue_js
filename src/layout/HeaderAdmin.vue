@@ -1,20 +1,36 @@
 <template>
-    <header class="header__main">
-        <div class="header__nav">
-            <router-link to="/admin/products">Produits</router-link> |
-            <router-link to="/admin/addProduct">Ajouter un Produits</router-link> |
-            <router-link to="/admin/Users">Users</router-link> |
-            <router-link to="/admin/Orders">Commandes</router-link> 
-        </div>
-    </header>
+  <header class="header__main">
+    <div class="header__nav">
+      <ul>
+        <li><router-link to="/admin/products">Produits</router-link></li>
+        <li>
+          <router-link to="/admin/addProduct">Ajouter un Produits</router-link>
+        </li>
+        <li><router-link to="/admin/Users">Users</router-link></li>
+        <li><router-link to="/admin/Orders">Commandes</router-link></li>
+      </ul>
+    </div>
+  </header>
 </template>
 
 <script>
-    export default {
-       
-    }
+export default {};
 </script>
 
 <style lang="scss" scoped>
-
+.header__nav {
+  ul {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    margin-bottom: 0px;
+    li {
+      margin: 20px;
+      a {
+        color: #009da8;
+      }
+    }
+  }
+}
 </style>

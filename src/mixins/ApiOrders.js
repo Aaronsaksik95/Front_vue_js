@@ -7,6 +7,7 @@ const token = localStorage.getItem("token");
 export default {
     methods: {
         order(cart, total) {
+            console.log('coucou')
             if (token) {
                 const decode = VueJwtDecode.decode(token)
                 var products = []
@@ -24,7 +25,6 @@ export default {
                 }).then((res) => {
                     res.json(),
                         cartFunc.methods.remove_cart()
-                        this.stripeOrder()
                 })
 
             } else {
@@ -78,6 +78,19 @@ export default {
                     Authorization: token,
                 },
             }).then((res) => res.json())
+        },
+        update_status(id){
+            return fetch(`${apiConfigs.apiUrl}orders/${id}`, {
+                method: "PUT",
+                body: JSON.stringify({
+                    status: this.status
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: token,
+                }
+            }).then((res) => res.json(
+            ))
         }
     }
 }

@@ -12,6 +12,8 @@ import Product from '../views/shop/Product.vue'
 import ShoppingCart from '../views/shop/ShoppingCart.vue'
 import Whish from '../views/shop/Whish.vue'
 import Orders from '../views/shop/Orders.vue'
+import Cancel from '../views/shop/Cancel.vue'
+import Success from '../views/shop/Success.vue'
 
 //Authentication
 import Login from '../views/authentication/Login.vue'
@@ -122,6 +124,16 @@ const routes = [
     name: 'UpdateUser',
     component: UpdateUser,
     beforeEnter: authAdmin
+  },
+  {
+    path: '/cancel',
+    name: 'Cancel',
+    component: Cancel
+  },
+  {
+    path: '/success',
+    name: 'Success',
+    component: Success
   },
   {
     path: '*',

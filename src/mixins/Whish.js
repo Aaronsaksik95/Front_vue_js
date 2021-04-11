@@ -1,7 +1,6 @@
 export default {
     methods: {
         add_whish(product) {
-            console.log('coucou')
             const newItem = {
                 _id: product._id,
                 title: product.title,

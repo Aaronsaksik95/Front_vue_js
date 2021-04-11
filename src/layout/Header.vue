@@ -68,6 +68,9 @@ export default {
   //  }
   display: flex;
   margin-bottom: 20px;
+  a{
+    color: black;
+  }
   .nav-page {
     ul {
       font-weight: bold;

@@ -9,19 +9,28 @@
         <option value="femme">Femme</option>
         <option value="enfant">Enfant</option>
       </select>
-      <label>Description</label>
       <input class="" type="text" v-model="product.description" />
-      <label>Image</label>
       <input class="" type="text" v-model="product.image" />
-      <label>Prix</label>
       <input class="" type="number" v-model="product.price" />
-      <label>Catégories</label>
-      <input
-        @click="displaySuggestion"
-        type="text"
-        v-model="category"
-        class=""
-      />
+      <div class="list-categ">
+        <div class="item-categ" v-for="item in titleCategories" :key="item._id">
+          <p>
+            {{ item }}
+          </p>
+          <h2 class="x-delete" @click="() => deleteItem(item)">x</h2>
+        </div>
+      </div>
+      <div class="categ">
+        <input
+          placeholder="Catégories"
+          @click="displaySuggestion"
+          type="text"
+          v-model="category"
+        />
+        <p @click="addCategory" v-if="category != ''">
+          Ajouter cette catégorie
+        </p>
+      </div>
       <div v-if="displayDiv" class="div_suggestion">
         <p
           v-for="item in filteredCategory"
@@ -30,12 +39,6 @@
           class="suggestion"
         >
           {{ item.title }}
-        </p>
-      </div>
-      <p @click="addCategory" class="btn btn-success">Ajouter catégorie</p>
-      <div class="d-flex w-100 horizontal-scrollable">
-        <p class="m-1" v-for="item in titleCategories" :key="item._id">
-          {{ item }}
         </p>
       </div>
       <Button
@@ -98,6 +101,11 @@ export default {
         }
       });
     },
+    deleteItem(item) {
+      var index = this.titleCategories.indexOf(item);
+      this.titleCategories.splice(index, 1);
+      this.idCategories.splice(index, 1);
+    },
     inputValue(title) {
       this.category = title;
     },
@@ -128,7 +136,70 @@ export default {
 .form-product {
   input {
     display: block;
+    margin: 20px auto;
+    width: 200px;
+  }
+  select {
+    width: 200px;
+    display: block;
     margin: auto;
+  }
+  .list-categ {
+    width: 200px;
+    display: flex;
+    margin: auto;
+    overflow: scroll;
+    .item-categ {
+      display: flex;
+      border-radius: 10px;
+      background-color: #009da8;
+      margin: 3px;
+      p {
+        margin: 3px 3px 5px 3px;
+        font-size: 15px;
+        padding-left: 3px;
+      }
+      .x-delete {
+        font-weight: bold;
+        color: white;
+        font-size: 19px;
+        margin: 0px 6px 0px 6px;
+      }
+    }
+  }
+  .categ {
+    width: 15%;
+    margin: auto;
+    input {
+      margin-bottom: 3px;
+    }
+    p {
+      padding: 3px 0px;
+      background-color: rgb(218, 218, 218);
+      border-radius: 10px;
+      font-size: 13px;
+      width: 70%;
+      margin: auto;
+    }
+  }
+}
+.div_suggestion {
+  max-height: 200px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  width: 30%;
+  margin: auto;
+  overflow: scroll;
+  :hover {
+    background-color: #009da8;
+  }
+  .suggestion {
+    margin: 3px 3px 5px 3px;
+    font-size: 15px;
+    padding: 4px;
+    border-radius: 10px;
+    border: 1px solid #009da8;
   }
 }
 </style>

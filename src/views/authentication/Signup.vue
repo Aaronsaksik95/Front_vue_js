@@ -1,7 +1,7 @@
 <template>
   <div>
     <TitlePage title="Inscription" />
-    <form action="" class="form-signup">
+    <div class="signup">
       <input placeholder="Prenom" type="text" v-model="firstName" />
       <input placeholder="Nom" type="text" v-model="lastName" />
       <input placeholder="Email" type="email" v-model="email" />
@@ -26,7 +26,11 @@
         btnText="Inscription"
         :btnFunction="signup"
       />
-    </form>
+      <small class="login-link">
+        Vous êtes déjà membre ?
+        <router-link to="/login"><strong>Connectez-vous.</strong></router-link>
+      </small>
+    </div>
   </div>
 </template>
 
@@ -73,4 +77,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.signup {
+  box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  width: 25%;
+  padding: 15px;
+  margin: auto;
+  .login-link {
+    display: block;
+  }
+  input {
+    width: 200px;
+    margin: 10px auto 10px auto;
+  }
+}
 </style>

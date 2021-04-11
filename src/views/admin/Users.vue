@@ -2,60 +2,48 @@
   <div>
     <HeaderAdmin />
     <div class="search__form">
-      <input type="text" v-model="searchValue" />
+      <input type="text" v-model="searchValue" placeholder="Recherche un email..."/>
     </div>
-    <table class="table w-50 mx-auto">
-      <thead>
-        <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Prénom</th>
-          <th scope="col">nom</th>
-          <th scope="col">email</th>
-          <th scope="col">phone</th>
-          <th scope="col">Adresse</th>
-          <th scope="col">ville</th>
-          <th scope="col">pays</th>
-          <th scope="col">IsAdmin</th>
-          <th scope="col">Supprimer</th>
-          <th scope="col">Modifier</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item in filteredShop" :key="item._id">
-          <th>{{ item._id }}</th>
-          <td>{{ item.firstName }}</td>
-          <td>{{ item.lastName }}</td>
-          <td>{{ item.email }}</td>
-          <td>{{ item.phone }}</td>
-          <td>{{ item.address }}</td>
-          <td>{{ item.city }}</td>
-          <td>{{ item.country }}</td>
-          <td>{{ item.isAdmin }}</td>
 
-          <!-- <td>
-            <select>
-              <option v-for="i in item.categories" :key="i._id">
-                {{ i.title }}
-              </option>
-            </select>
-          </td> -->
-          <td>
-            <Button
+<ul class="responsive-table">
+      <li class="table-header">
+        <div class="col col-1">Id</div>
+        <div class="col col-1">Prénom</div>
+        <div class="col col-1">Nom</div>
+        <div class="col col-2">Email</div>
+        <div class="col col-2">Phone</div>
+        <div class="col col-1">Adresse</div>
+        <div class="col col-1">Ville</div>
+        <div class="col col-1">IsAdmin</div>
+        <div class="col col-1">Supprimer</div>
+        <div class="col col-1">Modifier</div>
+      </li>
+      <li class="table-row" v-for="item in filteredUser" :key="item._id">
+        <div class="col col-1 id">{{ item._id }}</div>
+        <div class="col col-1">{{ item.firstName }}</div>
+        <div class="col col-1">{{ item.lastName }}</div>
+        <div class="col col-2">{{ item.email }}</div>
+        <div class="col col-2">{{ item.phone }}</div>
+        <div class="col col-1">{{ item.address }}</div>
+        <div class="col col-1">{{ item.city }}</div>
+        <div class="col col-1">{{ item.isAdmin }}</div>
+
+        <div class="col col-1">
+          <Button
               class="btn btn-red"
               btnText="Supprimer"
               :btnFunction="() => delete_users(item._id)"
             />
-          </td>
-          <td>
-            <router-link
+        </div>
+        <div class="col col-1">
+          <router-link
               class="btn btn-warning"
               :to="`./updateUser/${item._id}`"
               >Modifier</router-link
             >
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -83,9 +71,9 @@ export default {
     };
   },
   computed: {
-    filteredShop: function () {
+    filteredUser: function () {
       let filter = new RegExp(this.searchValue, "i");
-      return this.users.filter((item) => item.firstName.match(filter));
+      return this.users.filter((item) => item.email.match(filter));
     },
   },
   mixins: [ApiUsers],
@@ -109,7 +97,55 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.img {
-  width: 50px;
+.search__form {
+  input {
+    width: 200px;
+    margin: auto;
+  }
+}
+.responsive-table {
+  width: 90%;
+  margin: 20px auto;
+  li {
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    .img-produits {
+      width: 100%;
+    }
+    .div-icon {
+      width: 35px;
+      height: 35px;
+      border-radius: 50px;
+      background-color: rgb(219, 219, 219);
+      margin: auto;
+      .img-icon {
+        margin-top: 15%;
+        width: 70%;
+        border-radius: 10px;
+      }
+    }
+  }
+  .table-header {
+    background-color: #39cdd8;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .table-row {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+  }
+  .id{
+    font-size: 10px;
+  }
+  .col-1 {
+    flex-basis: 20%;
+  }
+  .col-2 {
+    flex-basis: 30%;
+  }
 }
 </style>

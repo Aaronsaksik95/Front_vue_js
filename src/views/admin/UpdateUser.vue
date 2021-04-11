@@ -35,7 +35,7 @@
     </div>
     <div class="info-user">
       <label for="">Is Admin</label>
-      <input v-model="user.isAdmin" type="checkbox" />
+      <input class="is-admin" v-model="user.isAdmin" type="checkbox" />
     </div>
     <Button
       class="btn btn-orange"
@@ -90,12 +90,15 @@ export default {
   p {
     margin: 0px;
   }
+  .is-admin{
+    width: 20px;
+  }
   label {
     font-weight: bold;
-  }
-  input {
-    display: block;
-    margin: auto;
-  }
+  }  
 }
+input {
+    margin: auto;
+    width: 200px;
+  }
 </style>

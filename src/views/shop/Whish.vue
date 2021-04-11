@@ -2,41 +2,53 @@
   <div>
     <div v-if="whish">
       <TitlePage :title="myTitle" />
+      <ul class="responsive-table">
+        <li class="table-header">
+          <div class="col col-2">Aperçu</div>
+          <div class="col col-1">Titre</div>
+          <div class="col col-1">Prix</div>
+          <div class="col col-2">Produit</div>
+          <div class="col col-2">Supprimer</div>
+          <div class="col col-2">Panier</div>
+        </li>
+        <li class="table-row" v-for="item in whish" :key="item.id">
+          <div class="col col-2">
+            <img class="img-produits" :src="item.image" alt="image produit" />
+          </div>
+          <div class="col col-1">{{ item.title }}</div>
+          <div class="col col-1">{{ item.price }} €</div>
+          <div class="col col-2">
+            <router-link :to="`/product/${item._id}`"
+              >Voir le produit</router-link
+            >
+          </div>
+          <div class="col col-2">
+            <div class="div-icon">
+              <img
+                @click="() => removeItemWhish(item)"
+                class="img-icon"
+                src="../../assets/corbeille.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="col col-2">
+            <div class="div-icon">
+              <img
+                @click="() => addCart(item)"
+                class="img-icon"
+                src="../../assets/cart.png"
+                alt=""
+              />
+            </div>
+          </div>
+        </li>
+      </ul>
       <Button
         class="btn"
         btnText="Supprimer les favoris"
         :btnFunction="removeWhish"
       />
-      <table class="table-whish">
-        <thead>
-          <tr>
-            <th>Aperçu</th>
-            <th>Titre</th>
-            <th>Price</th>
-            <th></th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="item in whish" :key="item.id">
-            <td>
-              <img class="img-produits" :src="item.image" alt="image produit" />
-            </td>
-            <td>{{ item.title }}</td>
-            <td>{{ item.price }} €</td>
-            <td>
-              <router-link :to="`/product/${item._id}`">Voir</router-link>
-            </td>
-            <td>
-              <Button class="btn" btnText="Supprimer" :btnFunction="() => removeItemWhish(item)"/>
-            </td>
-            <td>
-              <Button class="btn" btnText="Panier" :btnFunction="() => addCart(item)" />
-            </td>
-          </tr>
-        </tbody>
-      </table>
     </div>
     <h2 v-else>Les articles ajoutés à vos favoris seront enregistrés ici.</h2>
   </div>
@@ -78,21 +90,54 @@ export default {
     removeItemWhish(item) {
       this.remove_item_whish(item);
     },
-    addCart(product){
-      this.add_cart(product)
+    addCart(product) {
+      this.add_cart(product);
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.table-whish {
+.responsive-table {
+  width: 50%;
   margin: auto;
-}
-.img-produits {
-  width: 40px;
-}
-.input-qty {
-  width: 30px;
+  li {
+    border-radius: 30px;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    .img-produits {
+      width: 100%;
+    }
+    .div-icon {
+      width: 35px;
+      height: 35px;
+      border-radius: 50px;
+      background-color: rgb(219, 219, 219);
+      margin: auto;
+      .img-icon {
+        margin-top: 15%;
+        width: 70%;
+        border-radius: 10px;
+      }
+    }
+  }
+  .table-header {
+    background-color: #39cdd8;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .table-row {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+  }
+  .col-1 {
+    flex-basis: 20%;
+  }
+  .col-2 {
+    flex-basis: 30%;
+  }
 }
 </style>

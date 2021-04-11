@@ -30,18 +30,21 @@ export default {
   text-align: center;
   color: #2c3e50;
   a {
-    color: black;
     text-decoration: none;
   }
   input {
     display: block;
     border-radius: 10px;
     height: 35px;
-    width: 250px;
     border: 1px solid rgb(95, 95, 95);
     text-indent: 3px;
-    margin: 10px auto 10px auto;
-
+  }
+  select{
+    height: 30px;
+    border-radius: 10px;
+    text-indent: 5px;
+    border: 0px;
+    background-color: rgb(218, 218, 218);
   }
 }
 </style>
