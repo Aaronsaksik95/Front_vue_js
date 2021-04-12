@@ -1,19 +1,17 @@
 # my_front
 
-## Project setup
-```
-npm install
-```
+## Aaron SAKSIK
 
-### Compiles and hot-reloads for development
+## LIEN HEROKU:
 ```
-npm run serve
+https://front-vue-aaron-saksik.herokuapp.com/#/
 ```
-
-### Compiles and minifies for production
+## USER ADMIN:
+### Email 
 ```
-npm run build
+vincent.zerbib@shop-aaron.com
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Password 
+```
+azertyuiop
+```
