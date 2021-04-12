@@ -1,6 +1,7 @@
 <template>
   <div>
-    <small>Imaginez de plus belles images pour le caroussel.</small>
+    <small>Imaginez de plus belles images pour le caroussel. </small>
+    <small>Et désolé pour le responsive je n'ai pas eu le temps.</small>
     <div>
       <Carousel>
       <CarouselSlide :index="0">
