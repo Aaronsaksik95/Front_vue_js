@@ -98,7 +98,11 @@ export default {
       this.remove_item_cart(item);
     },
     orderCart: async function () {
-      await this.stripeOrder();
+      if (localStorage.getItem("token")) {
+        await this.stripeOrder();
+      } else {
+        this.$router.push("./login");
+      }
     },
   },
   computed: {

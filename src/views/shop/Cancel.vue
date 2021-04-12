@@ -1,7 +1,7 @@
 <template>
   <div class="cancel">
     <h1>Une erreur est survenue, la commande n'a pas été éffectué.</h1>
-    <router-link to="/cart">Mon panier</router-link>
+    <router-link to="/cart">Retour à mon panier →</router-link>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
   color: rgb(250, 84, 0);
 }
 a {
-  color: black;
+  color: rgb(116, 116, 116);
   font-weight: bold;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="success">
     <h1>Félicitation votre commande a bien été éffectué.</h1>
-    <router-link to="/orders">Mes commandes</router-link>
+    <router-link to="/orders">Mes commandes →</router-link>
   </div>
 </template>
 
@@ -30,7 +30,7 @@ export default {
   color: #39cdd8;
 }
 a {
-  color: black;
+  color: rgb(116, 116, 116);
   font-weight: bold;
 }
 </style>
