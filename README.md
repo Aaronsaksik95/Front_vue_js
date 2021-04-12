@@ -6,20 +6,12 @@
 ```
 https://front-vue-aaron-saksik.herokuapp.com/#/
 ```
-## Project setup
+## USER ADMIN:
+### Email 
 ```
-npm install
+vincent.zerbib@shop-aaron.com
 ```
-
-### Compiles and hot-reloads for development
+### Password 
 ```
-npm run serve
+azertyuiop
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
