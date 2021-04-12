@@ -1,24 +1,28 @@
 <template>
   <div>
-    <TitlePage :title="myTitle" />
+    <small>Imaginez de plus belles images pour le caroussel.</small>
     <div>
-      <!-- <select name="categories" id="">
-        <option
-          v-for="item in categories"
-          :key="item._id"
-          @focus="() => chooseCategory(item.title)"
-        >
-          {{ item.title }}
-        </option>
-      </select> -->
+      <Carousel>
+      <CarouselSlide :index="0">
+        <img class="img-carousel" src="http://www.airsh3agroupe.com/wp-content/uploads/2020/02/dubai-banner-2.png" alt />
+      </CarouselSlide>
+      <CarouselSlide :index="1">
+        <img class="img-carousel" src="http://www.trecom.fr/zen-asie/DUBAI.jpg" alt />
+      </CarouselSlide>
+      <CarouselSlide :index="2">
+        <img class="img-carousel" src="https://cdn.ttgtmedia.com/visuals/ComputerWeekly/Hero%20Images/New-york-manhattan-skyline-fotolia.jpg" alt />
+      </CarouselSlide>
+    </Carousel>
     </div>
     <div class="search__content">
-      <ProductsGrid :productArray="filteredShop" />
+      <ProductsGrid :productArray="filteredShop" :detail="true"/>
     </div>
   </div>
 </template>
 
 <script>
+import Carousel from "../components/carousel/Carousel";
+import CarouselSlide from "../components/carousel/CarouselSlide";
 import TitlePage from "../components/tools/TitlePage";
 import ProductsGrid from "../components/product/ProductGrid";
 import ApiProducts from "../mixins/ApiProducts";
@@ -29,10 +33,11 @@ export default {
   components: {
     TitlePage,
     ProductsGrid,
+    Carousel,
+    CarouselSlide
   },
   data: function () {
     return {
-      myTitle: "Shop aaron",
       products: [],
       searchValue: "",
       categories: [],
@@ -58,7 +63,6 @@ export default {
   },
   methods: {
     chooseCategory(title) {
-      console.log("coucou")
       this.get_product_category(title).then((data) => {
         this.products = data.products;
       });
@@ -68,4 +72,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.img-carousel{
+  width: 100%;
+}
 </style>

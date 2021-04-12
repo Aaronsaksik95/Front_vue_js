@@ -8,7 +8,7 @@
 <script>
 import TitlePage from "../../components/tools/TitlePage";
 import ApiOrders from "../../mixins/ApiOrders";
-import Cart from '../../mixins/Cart';
+import Cart from "../../mixins/Cart";
 export default {
   components: {
     TitlePage,
@@ -27,6 +27,10 @@ export default {
 
 <style lang="scss" scoped>
 .success {
-  color: rgb(6, 179, 0);
+  color: #39cdd8;
+}
+a {
+  color: black;
+  font-weight: bold;
 }
 </style>

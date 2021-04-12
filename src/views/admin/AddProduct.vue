@@ -113,7 +113,6 @@ export default {
           this.titleCategories.push(data.category.title);
         }
       });
-      this.category = ""
     },
     deleteItem(item) {
       var index = this.titleCategories.indexOf(item);

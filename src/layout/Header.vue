@@ -9,12 +9,18 @@
       </div>
       <div class="nav-page">
         <ul>
-          <li><router-link to="/man">Homme</router-link></li>
-          <li><router-link to="/woman">Femme</router-link></li>
-          <li><router-link to="/kids">Enfant</router-link></li>
+          <li @click="refresh">
+            <router-link to="/genre/homme"><strong>Homme</strong></router-link>
+          </li>
+          <li @click="refresh">
+            <router-link to="/genre/femme"><strong>Femme</strong></router-link>
+          </li>
+          <li @click="refresh">
+            <router-link to="/genre/enfant"><strong>Enfant</strong></router-link>
+          </li>
           <li><router-link to="/login">S'identifier</router-link></li>
           <li><router-link to="/orders">Mes commandes</router-link></li>
-          <li><router-link to="/admin/products">Admin</router-link></li>
+          <li v-if="this.isAdmin"><router-link to="/admin/products">Admin</router-link></li>
         </ul>
       </div>
       <Search class="search" />
@@ -43,9 +49,24 @@
 
 <script>
 import Search from "../components/product/Search";
+import ApiUsers from "../mixins/ApiUsers";
 export default {
   components: {
     Search,
+  },
+  data: function () {
+    return {
+      isAdmin: false
+    };
+  },
+  mixins: [ApiUsers],
+  created(){
+    this.isAdmin = this.is_admin()
+  },
+  methods: {
+    refresh() {
+      document.location.reload();
+    },
   },
 };
 </script>
@@ -63,20 +84,19 @@ export default {
   }
 }
 .header__nav {
-  //  @media(max-width: 768px){
-  //      display: none;
-  //  }
   display: flex;
   margin-bottom: 20px;
-  a{
+  a {
     color: black;
   }
   .nav-page {
     ul {
-      font-weight: bold;
+      text-transform: uppercase;
       display: flex;
       list-style-type: none;
       margin-bottom: 0px;
+      font-size: 14px;
+      padding: 0px;
       li {
         margin: 20px;
       }

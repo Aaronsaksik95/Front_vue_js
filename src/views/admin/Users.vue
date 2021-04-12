@@ -30,9 +30,9 @@
 
         <div class="col col-1">
           <Button
-              class="btn btn-red"
+              class="btn btn-delete"
               btnText="Supprimer"
-              :btnFunction="() => delete_users(item._id)"
+              :btnFunction="() => deleteUser(item._id)"
             />
         </div>
         <div class="col col-1">
@@ -85,8 +85,8 @@ export default {
       .catch((err) => console.log(err));
   },
   methods: {
-    delete_users(id) {
-      this.deleteUsers(id).catch((err) => console.log(err));
+    deleteUser(id) {
+      this.delete_user(id).catch((err) => console.log(err));
       document.location.reload();
     },
     displayUpdateButton() {
@@ -114,6 +114,10 @@ export default {
     margin-bottom: 10px;
     .img-produits {
       width: 100%;
+    }
+    a{
+      color: rgb(255, 157, 0);
+      font-weight: bold;
     }
     .div-icon {
       width: 35px;

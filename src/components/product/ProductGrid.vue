@@ -1,7 +1,17 @@
 <template>
-  <div class="product-grid">
-    <div v-for="item in productArray" :key="item._id">
-      <ProductItem :productObject="item" />
+  <div>
+    <div v-if="detail">
+      <div class="product-grid">
+        <div v-for="item in productArray" :key="item._id">
+          <ProductItem :productObject="item" :detail="detail" />
+        </div>
+      </div>
+    </div>
+
+    <div class="product-flex" v-else>
+      <div v-for="item in productArray" :key="item._id">
+        <ProductItem :productObject="item" :detail="detail" />
+      </div>
     </div>
   </div>
 </template>
@@ -17,6 +27,7 @@ export default {
       required: true,
       type: Array,
     },
+    detail: Boolean,
   },
   data: function () {
     return {};
@@ -30,6 +41,9 @@ export default {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
-  // margin: 20px;
+}
+.product-flex {
+  display: flex;
+  overflow: scroll;
 }
 </style>

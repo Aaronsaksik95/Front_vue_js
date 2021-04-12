@@ -49,14 +49,21 @@
         btnText="Supprimer les favoris"
         :btnFunction="removeWhish"
       />
+      <h4>Vous aimerez aussi ces articles !</h4>
+      <ProductsGrid :productArray="products" :detail="false" class="grid" />
     </div>
-    <h2 v-else>Les articles ajoutés à vos favoris seront enregistrés ici.</h2>
+
+    <div v-else>
+      <h2>Les articles ajoutés à vos favoris seront enregistrés ici.</h2>
+    </div>
   </div>
 </template>
 
 <script>
 import Button from "../../components/tools/Button";
 import TitlePage from "../../components/tools/TitlePage";
+import ApiProducts from "../../mixins/ApiProducts";
+import ProductsGrid from "../../components/product/ProductGrid";
 import Cart from "../../mixins/Cart";
 import Whish from "../../mixins/Whish";
 
@@ -65,17 +72,26 @@ export default {
   components: {
     TitlePage,
     Button,
+    ProductsGrid,
   },
   data: function () {
     return {
       myTitle: "Mes favoris",
       whish: [],
       d_button: false,
+      products: [],
     };
   },
-  mixins: [Whish, Cart],
+  mixins: [Whish, Cart, ApiProducts],
   created() {
     this.whish = this.get_whish();
+    this.get_products()
+      .then((data) => {
+        for (var i = 0; i < 4; i++) {
+          this.products.push(data.products[i]);
+        }
+      })
+      .catch((err) => console.log(err));
   },
   methods: {
     editQuantity(qty, id) {
@@ -110,6 +126,10 @@ export default {
     .img-produits {
       width: 100%;
     }
+    a {
+      color: #39cdd8;
+      font-weight: bold;
+    }
     .div-icon {
       width: 35px;
       height: 35px;
@@ -139,5 +159,10 @@ export default {
   .col-2 {
     flex-basis: 30%;
   }
+}
+.grid {
+  width: 50%;
+  margin: auto;
+  margin-top: 50px;
 }
 </style>

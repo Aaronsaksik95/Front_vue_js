@@ -18,4 +18,8 @@ export default {
 .cancel {
   color: rgb(250, 84, 0);
 }
+a {
+  color: black;
+  font-weight: bold;
+}
 </style>

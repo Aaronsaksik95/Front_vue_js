@@ -33,16 +33,16 @@
             background: rgb(34, 34, 34);
             color:white;
         }
-        &-green {
-            background: green;
+        &-validate {
+            background: #39cdd8;
             color:white;
         }
-        &-grey {
-            background: grey;
+        &-update {
+            background: rgb(255, 196, 100);
             color: black;
         }
-        &-orange {
-            background: rgb(255, 166, 0);
+        &-delete {
+            background: rgb(253, 144, 144);
             color: black;
         }
     }

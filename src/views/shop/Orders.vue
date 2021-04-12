@@ -7,6 +7,7 @@
           <p><strong>Date:</strong> {{ i.date.substring(0, 10) }}</p>
           <p><strong>Heure:</strong> {{ i.date.substring(12, 16) }}</p>
           <p><strong>Total:</strong> {{ i.total }}€</p>
+          <p>Status: <strong>{{ i.status }}</strong></p>
         </div>
         <ul class="responsive-table">
           <li class="table-header">
@@ -30,12 +31,15 @@
         </ul>
       </div>
     </div>
-    <h2 v-else>Vous n'avez aucune commande.</h2>
+    <div v-else>
+      <TitlePage title="Vous n'avez aucune commandes." />
+    </div>
   </div>
 </template>
 
 <script>
 import Button from "../../components/tools/Button";
+import TitlePage from "../../components/tools/TitlePage";
 import ApiOrders from "../../mixins/ApiOrders";
 import ApiProducts from "../../mixins/ApiProducts";
 import ApiUsers from "../../mixins/ApiUsers";
@@ -52,6 +56,7 @@ export default {
   },
   components: {
     Button,
+    TitlePage
   },
   mixins: [ApiUsers, ApiProducts, ApiOrders],
   methods: {},
@@ -96,6 +101,10 @@ export default {
     margin-bottom: 10px;
     .img-produits {
       width: 100%;
+    }
+    a{
+      color: #39cdd8;
+      font-weight: bold;
     }
   }
   .table-header {

@@ -7,7 +7,6 @@ const token = localStorage.getItem("token");
 export default {
     methods: {
         order(cart, total) {
-            console.log('coucou')
             if (token) {
                 const decode = VueJwtDecode.decode(token)
                 var products = []
@@ -28,7 +27,6 @@ export default {
                 })
 
             } else {
-                console.log("coucou")
                 this.$router.push("./login");
             }
 

@@ -61,9 +61,12 @@ export default {
     signup() {
       this.signupUser()
         .then((data) => {
-          localStorage.setItem("token", data.token);
           if (data.auth) {
-            this.$router.push("./shops");
+            localStorage.setItem("token", data.token);
+            if (localStorage.getItem("token")) {
+              this.$router.push("./");
+              document.location.reload();
+            }
           } else {
             this.message = data.message;
           }

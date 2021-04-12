@@ -4,6 +4,10 @@ const token = localStorage.getItem("token");
 
 export default {
     methods: {
+        is_admin(){
+            const decode = VueJwtDecode.decode(token)
+            return decode.isAdmin
+        },
         get_users() {
             return fetch(`${apiConfigs.apiUrl}users`, {
                 headers: {

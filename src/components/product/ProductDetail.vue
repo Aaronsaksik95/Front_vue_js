@@ -7,9 +7,14 @@
       <p class="price">{{ productObject.price }} €</p>
       <small class="label">Catégories</small>
       <div class="categ">
-        <p v-for="item in productObject.categories" :key="item._id">
+        <router-link
+          v-for="item in productObject.categories"
+          :key="item._id"
+          :to="`/genre/${productObject.genre}/category/${item.title}`"
+          class="item-categ"
+        >
           {{ item.title }}
-        </p>
+        </router-link>
       </div>
       <div class="desc">
         <!-- <small class="label">Description</small> -->
@@ -61,14 +66,14 @@ export default {
 
 <style lang="scss" scoped>
 .detail {
-  margin: 10px;
+  margin: 100px;
   display: grid;
   grid-template-columns: repeat(11, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
   .img-product {
     grid-column: 2 / span 7;
-    width: 100%;
+    width: 80%;
   }
   .info-product {
     grid-column: 9 / span 2;
@@ -77,6 +82,7 @@ export default {
       margin: 10px 0px 0px 10px;
       font-size: 20px;
       font-weight: bold;
+      color: #39cdd8;
     }
     .title {
       margin: 0px 0px 0px 10px;
@@ -95,12 +101,17 @@ export default {
       grid-template-columns: repeat(3, 1fr);
       grid-gap: 5px;
       margin: 0px 0px 10px 10px;
-      p {
+      :hover {
+        background-color: #39cdd8;
+      }
+      a {
         border: 1px solid rgb(233, 233, 233);
         border-radius: 10px;
         padding: 5px;
         overflow: scroll;
         margin: 2px;
+        color: black;
+        text-align: center;
       }
     }
     .desc {

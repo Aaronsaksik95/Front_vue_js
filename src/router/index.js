@@ -4,9 +4,8 @@ import authAdmin from '../middleware/authAdmin'
 import auth from '../middleware/auth'
 
 //Shops
-import Man from '../views/shop/Man.vue'
-import Woman from '../views/shop/Woman.vue'
-import Kids from '../views/shop/Kids.vue'
+import Genre from '../views/shop/Genre.vue'
+import Category from '../views/shop/Category.vue'
 import Home from '../views/Home.vue'
 import Product from '../views/shop/Product.vue'
 import ShoppingCart from '../views/shop/ShoppingCart.vue'
@@ -33,19 +32,14 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/man',
-    name: 'Man',
-    component: Man
+    path: '/genre/:genre',
+    name: 'Genre',
+    component: Genre
   },
   {
-    path: '/woman',
-    name: 'Woman',
-    component: Woman
-  },
-  {
-    path: '/kids',
-    name: 'Kids',
-    component: Kids
+    path: '/genre/:genre/category/:category',
+    name: 'Category',
+    component: Category
   },
   {
     path: '/',

@@ -24,7 +24,7 @@
               <option value="DELIVERED">DELIVERED</option>
             </select>
             <Button
-              class="btn btn-red"
+              class="btn btn-validate"
               btnText="Valider"
               :btnFunction="() => updateStatus(item._id)"
             />
@@ -32,7 +32,7 @@
           <div v-else>
             <p>{{ item.status }}</p>
             <Button
-              class="btn btn-red"
+              class="btn btn-update"
               btnText="Modifier"
               :btnFunction="() => updateTrue(item._id)"
             />
@@ -55,7 +55,7 @@
 
         <div class="col col-1">
           <Button
-            class="btn btn-red"
+            class="btn btn-delete"
             btnText="Supprimer"
             :btnFunction="() => deleteOrder(item._id)"
           />

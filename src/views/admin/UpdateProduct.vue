@@ -91,7 +91,7 @@ export default {
     addCategory() {
       this.get_category(this.category).then((data) => {
         if (data.category == null) {
-          this.postCategory().then((data) => {
+          this.add_category().then((data) => {
             this.idCategories.push(data.category._id);
             this.titleCategories.push(data.category.title);
           });

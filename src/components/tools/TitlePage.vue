@@ -19,7 +19,7 @@
 
 <style lang="scss" scoped>
     .title__page {
-        margin: 40px 0px;
+        margin: 40px 3px;
         h1 {
             font-size: 20px;
             font-weight: bold;

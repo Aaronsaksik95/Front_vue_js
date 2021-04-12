@@ -41,8 +41,11 @@ export default {
       this.loginUser()
         .then((data) => {
           if (data.auth) {
-            this.$router.push("./home");
             localStorage.setItem("token", data.token);
+            if (localStorage.getItem("token")){
+              this.$router.push("./");
+              document.location.reload();
+            }
           } else {
             this.message = data.message;
           }

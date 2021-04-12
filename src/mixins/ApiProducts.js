@@ -22,6 +22,10 @@ export default {
             return fetch(`${apiConfigs.apiUrl}products/genre/${genre}`, {
             }).then(res => res.json())
         },
+        get_products_category(genre, category){
+            return fetch(`${apiConfigs.apiUrl}products/genre/${genre}/category/${category}`, {
+            }).then(res => res.json())
+        },
         add_product() {
             return fetch(`${apiConfigs.apiUrl}products`, {
                 method: "POST",
@@ -31,6 +35,7 @@ export default {
                     genre: this.genre,
                     description: this.description,
                     image: this.image,
+                    categoriesArray: this.titleCategories,
                     categories: this.idCategories
                 }),
                 headers: {
@@ -48,6 +53,7 @@ export default {
                     genre: this.product.genre,
                     description: this.product.description,
                     image: this.product.image,
+                    categoriesArray: this.titleCategories,
                     categories: this.idCategories
                 }),
                 headers: {

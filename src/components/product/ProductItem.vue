@@ -8,7 +8,7 @@
           alt="image produit"
         />
       </router-link>
-      <div class="info-tools">
+      <div class="info-tools" v-if="detail">
         <router-link :to="`/product/${productObject._id}`">
           <div class="infos">
             <h5 class="title-produit">{{ productObject.title }}</h5>
@@ -67,6 +67,7 @@ export default {
       required: true,
       type: Object,
     },
+    detail: Boolean
   },
   mixins: [Cart, Whish],
   methods: {
@@ -130,7 +131,7 @@ export default {
       }
       .desc-plus {
         position: absolute;
-        top: 50px;
+        top: 55px;
         border-radius: 10px;
         padding: 5px;
         font-size: 13px;
@@ -145,18 +146,18 @@ export default {
     }
     .tools {
       :hover {
-        background-color: rgb(167, 167, 167);
+        background-color: #9fe4e9;
       }
       div {
         margin-top: 6px;
-        width: 35px;
-        height: 35px;
+        width: 30px;
+        height: 30px;
         border-radius: 50px;
         background-color: rgb(219, 219, 219);
         .img-icon {
           margin-top: 10%;
           width: 80%;
-          border-radius: 10px;
+          border-radius: 5px;
         }
       }
     }

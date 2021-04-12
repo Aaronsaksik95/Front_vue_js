@@ -129,6 +129,10 @@ export default {
     .img-produits {
       width: 100%;
     }
+    a {
+      color: #39cdd8;
+      font-weight: bold;
+    }
     .input-qty {
       width: 30px;
       margin: 0px;

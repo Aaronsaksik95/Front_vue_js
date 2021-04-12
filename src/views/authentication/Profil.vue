@@ -42,20 +42,22 @@
           <p v-else>{{ user.country }}</p>
         </div>
       </div>
+      <div v-if="!isAdmin">
+        <Button
+          v-if="!edit"
+          class="btn btn-update btn-large"
+          btnText="Modifier"
+          :btnFunction="editTrue"
+        />
+        <Button
+          v-else
+          class="btn btn-validate btn-large"
+          btnText="Valider"
+          :btnFunction="editUser"
+        />
+      </div>
       <Button
-        v-if="edit"
-        class="btn btn-large"
-        btnText="Valider"
-        :btnFunction="editUser"
-      />
-      <Button
-        v-else
-        class="btn btn-large"
-        btnText="Modifier"
-        :btnFunction="editTrue"
-      />
-      <Button
-        class="btn btn-large"
+        class="btn btn-large btn-delete"
         btnText="Déconnexion"
         :btnFunction="logout"
       />
@@ -75,6 +77,7 @@ export default {
       user: [],
       userId: null,
       edit: false,
+      isAdmin: false,
     };
   },
   components: {
@@ -82,10 +85,13 @@ export default {
     TitlePage,
   },
   mixins: [ApiUsers],
+  created() {
+    this.isAdmin = this.is_admin();
+  },
   methods: {
     logout: function () {
       localStorage.removeItem("token");
-      this.$router.push("./login");
+      document.location.reload()
     },
     editTrue() {
       this.edit = true;

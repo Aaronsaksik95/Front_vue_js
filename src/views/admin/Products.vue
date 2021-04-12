@@ -38,7 +38,7 @@
 
         <div class="col col-1">
           <Button
-            class="btn btn-red"
+            class="btn btn-delete"
             btnText="Supprimer"
             :btnFunction="() => deleteProduct(item._id)"
           />
@@ -118,6 +118,10 @@ export default {
     margin-bottom: 10px;
     .img-produits {
       width: 100%;
+    }
+    a{
+      color: rgb(255, 157, 0);
+      font-weight: bold;
     }
     .div-icon {
       width: 35px;
