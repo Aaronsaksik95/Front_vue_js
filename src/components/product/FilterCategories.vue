@@ -29,7 +29,7 @@ export default {
   mixins: [ApiCategories],
   created() {
     this.get_categories().then((data) => {
-      this.categories = data.categories;
+      this.categories = data.categories.sort();
     });
   },
   methods: {
